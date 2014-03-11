@@ -1,0 +1,62 @@
+
+INTRO:
+
+Oh no! Chunky the Happy Monkey is stuck on the forest moon of endor.  
+You need to navigate Chunky from his lost and lonely location to the 
+location of the clown trooper extraction point.  
+
+Your program should ask for an input file that describes the forest.
+It should then ask for the start coordinates and the end coordinates. 
+Finally, it should ask for an output file name.  The program should
+output a series of coordinates that is a path from the start to the end
+that does not intersect any of the obstacles.  
+
+INPUT FILE:
+
+Our obstacles consist of polygons.  The first number in the input file is the 
+number of polygons in the forest.  For each polygon, the first number
+is the number of vertexes.  We then have the x,y coordinates of each vertex.
+files four.txt and six.txt are sample input files.
+
+OUTPUT FILE:
+
+The first number in the output file, is the number of coords in the path.
+We then have the coords in the path.  The first coord in the path should be the 
+start coord and the last should be the end coord. fourpath.txt and sixpath.txt
+are sample output files for four.txt and six.txt respectively.
+
+DETAILS:
+
+Your output path should not cross any of the sides of the polygons in
+the forest.  The sides of a polygon are considered line segments not lines.  
+
+Please provide appropriate and numerous constants. 
+
+Your DD will be due first.  Please ensure that your DD format matches what we 
+have used in class.  
+
+HINTS:
+
+-START EARLY
+-Two line segments collide if the lines they represent intersect 
+within the line segments.  For each line segment, I stored 
+  the slope, the y_intersect, the end points of the line segment. 
+-make your objects do as much work for you as possible, it will let you
+ write easier code later on. 
+-Want an easy and fun path finding algorithm?
+ Set the first coordinate in the path to the start, 
+ set the last coordinate in the path to the end.
+ Then fill the rest of the array with random coordinates.
+ Ensure that each line segment of the path doesn't intersect with
+ any of the polygons.
+ If any line segment does intersect with a polygon, then generate
+ new random coordinates.
+
+
+
+EXTRA CREDIT:
+
+-use command line arguments
+-I have a special 100 obstacle forest called endor.txt.
+ Finding the shortest path through endor will grant extra credit.
+
