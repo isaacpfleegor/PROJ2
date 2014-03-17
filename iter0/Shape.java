@@ -40,7 +40,7 @@ public class Shape
 
 	public int get_num_lines(){return num_lines;}
 	public int get_num_coords(){return num_coords;}
-
+//should return true if intersects
 	public boolean compare(LineSegment line)
 	{
 	//will compare this line with every lineSeg in this shape

@@ -66,6 +66,8 @@ public class Solution
 	}
 	public void getSolution()
 	{
+		//done could be a local variable
+		
 		//we need to make sure that there is a min and max rand num
 		double minx = start.get_x();
 		double miny = start.get_y();

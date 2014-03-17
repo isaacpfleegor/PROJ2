@@ -31,7 +31,7 @@ public class Reader
 	file.close();
 
 }
-
+//should return true if the line intersencts
 public boolean intersect(LineSegment line)
 {
 	//for each shape

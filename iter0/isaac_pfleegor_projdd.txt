@@ -1,0 +1,199 @@
+desc/requirements: make a program that will read in a file, make shapes based on information from that file, and make line(solution) that will navigate around the shapes from the start point to the end point and output the solution to a file.
+
+
+///////application object
+desc: runs solution object
+params: none
+return: n/a
+1) allocate new user scanner
+2) create solution object
+2) call getSolution method on object
+4) call toString method on solution
+
+/////////solution object
+desc: creates set of coords and lines and tests them against the set of shapes
+//members:
+-Coord array
+-LineSegment array
+-Random gen
+-Reader object
+//methods:
+-name:constructor
+desc: allocate arrays of coords and lineSegs with randomly generated vals and test
+params:Scanner user
+return: n/a
+1) allocate a new reader object
+2) allocate array of coords and linesegs
+3) set the first and last element of coord array to start and finish point
+
+-name:getSolution
+desc: creates random solutions and tests them against shapes until solution
+	is found
+params: void
+return: void
+1) creat minx, miny, maxx, and maxx for bounds of random numbers
+2) for each element between start and finish in coord array do steps 3- 4
+3) create two random numbers between min and max
+4) create coord using rand values
+5) create line segments using coord array (F)
+6) while not done, test lineseg array against all shapes in reader object  (F)
+
+-name: connectLines() (step 5 of getSolution)
+desc: creates lines from coord array
+params: none
+return: none
+1) for each element in line array do step 2
+2) create lineSegment using coords
+
+-name: testLines() (step 6 of getSolution)
+desc: test lines against all shapes in reader object
+params: none
+return: boolean - return true when solution is found
+1) for each line in the lineSeg array do step 2
+2) run reader's intersect method, if true return false
+3) return true
+
+-name:testSolution
+desc:
+params:
+return:
+-name:toString
+desc: returns String representation coord solution
+params: none
+return: String
+1) call Arrays.toString method on coords array
+2) print to file in correct file format
+
+
+/////reader object
+desc: reads a file and allocates shape object based on that file
+//members:
+-Shape array
+-Scanner file
+-int num_shapes
+//methods:
+-name: constructor
+desc: reads in the shape file, and allocates the shapes for each shape
+	described in the file
+params: Scanner user
+return: n/a
+1) ask the user for the name of the file
+2) read in the file
+3) get the number of shapes from the first line of the file
+4) allocate an array of shapes
+5) for each shape do steps 6 -7
+6) read in the number of coordinate pairs
+7) allocate the shape
+8) close the file
+-name: intersect
+desc: resturns true if there is an intersecting line in any shape in the array
+params: LineSegment line
+return: true - if intersection, false if not
+1)for each shape do step 2
+2) for each shape call compare method. If true, return true.
+3) return false
+-name: toString
+desc: returns a String representation of the shapes
+params: none
+return: String
+1) make an empty String
+2) for each shape call toString method and add to String
+3) return String
+
+
+///////////Shape Object
+desc: holds the information that makes up a shape
+//members:
+-int num_coords
+-int num_lines
+-Coord array
+-LineSegment array
+//methods:
+-name :constructor
+desc: allocates coord array and line segment array and inits them
+params: Scanner file, int num_coords
+return: n/a
+1) allocate coord array by amt of num_coords
+2) for each line of coords, do step 3 -4
+3) read in first and second coord from line
+4) create coord with coords from line
+5) allocate new lineSegment array
+6) for each Linesegment do step 7
+7) if not last at last element of array, connect coord i to coord i + 1
+	else connect line to first element's coord
+-name :boolean compare
+desc: compares line against this shapes lineSegs
+params:LineSegment line
+return: boolean - returns true if intersects, false if not
+1) for each line segment in line array do step 2
+2) run line's intersect method. If 
+
+-name: toString
+desc: returns a String representation of the shapes
+params: none
+return: String
+1) make an empty String
+2) for each set of Coords call toString method and add to String
+3) return String
+
+name: Coord
+desc: creates coords
+//members:
+-double x
+-double y
+//methods:
+-constructor
+-slope
+-y_intercept
+  //  name: constructor
+    //  desc: sets the members passed on the params
+    //  params: int x, int y
+    //  return: n/a
+    //  1) store x in _x
+    //  2) store y in _y
+ //  name: slope
+    //  desc: calculates the slope of a line between this
+    //  object and the parameter
+    //  params: Coord c
+    //  return: double - the slope
+    //  1) calculate the change in y coords
+    //  2) calculate the change in x coords
+    //  3) return the change in y divided by change in x
+ name: y_intercept
+    //  desc: calculate the y intercept of a line through
+    //  this point with with a given slope.
+    //  params: double slope 
+    //  1) return _y - slope * _x;
+
+name: LineSegment
+desc: creates lineSegments
+//members:
+double slope, y-intercept, min, and max
+//methods:
+    //  name: constructor
+    //  desc: uses two coord objects to find the equation of a line
+    //  params:  Coord p1, Coord p1
+    //  return: n/a
+    //  1) find the slope of the line
+    //  2) find the y intercept 
+
+    //  name: intersection
+    //  desc: find the intersection of this line with the 
+    //   parameter.  
+    //  params: LineSegment other
+    //  return: Coord - pointer to a coord object with the intercept
+    //  1) calculate the difference between this's intercept 
+    //  other's intercept
+    //  2) calculate the differece between other's slope and this's
+    //  slope
+    //  3) divide the result of 1 by 2.  this is the x coordinate of the 
+    //  intercept.  
+    //  4) multiple the slope by the result of 3, add the intercept.
+    //  this is the y coordinate of the slope
+    //  5) create a new coord ojbect with the x,y of the intercept.
+    //  6) return the new coord object.  
+
+
+
+
+
