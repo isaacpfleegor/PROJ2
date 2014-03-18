@@ -57,13 +57,22 @@ public class Solution
 		lines  = new LineSegment[5];
 
 	}*/
-
-
 	public String toString()
+	{
+		String display = "";
+		display += 6 + "\n";
+		for(int i = 0; i < coords.length; i++)
+		{
+			display += coords[i].toString() + "\n";
+		}
+		return display;
+	}
+
+	/*public String toString()
 	{
 		//prints out solution
 		return "" + Arrays.toString(coords);
-	}
+	}*/
 	public void getSolution()
 	{
 		//done could be a local variable
