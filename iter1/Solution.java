@@ -24,7 +24,6 @@ public class Solution
 		finish = new Coord(10, 10);
 		//read in the file that we will use as problem
 		reader = new Reader(user);
-		//System.out.println(reader.toString());
 
 		//create the random set coords
 		//we can have shapes test for us and just keep the results
@@ -36,27 +35,7 @@ public class Solution
 
 
 	}
-	//for testing to see if we can get correct solution
-	/*public Solution(Scanner user, int num) throws FileNotFoundException
-	{
-
-		reader = new Reader(user);
-
-		done = false;
-		start = new Coord(0, 0);
-		finish = new Coord(10, 10);
-
-		coords = new Coord[6];
-		coords[0] = start;
-		coords[1] = new Coord(8.94957222245666,0.010806297164279721);
-		coords[2] = new Coord(9.456728233436403,5.773122235432969);
-		coords[3] = new Coord(5.094417227596423,3.3073044090658743);
-		coords[4] = new Coord(4.276545968130401,9.910344840500013);
-		coords[5] = finish;
-
-		lines  = new LineSegment[5];
-
-	}*/
+	//prints out solution coordinate array in the proper answer format
 	public String toString()
 	{
 		String display = "";
@@ -68,11 +47,7 @@ public class Solution
 		return display;
 	}
 
-	/*public String toString()
-	{
-		//prints out solution
-		return "" + Arrays.toString(coords);
-	}*/
+
 	public void getSolution()
 	{
 		//done could be a local variable
@@ -98,45 +73,37 @@ public class Solution
 			connectLines();
 			//tests to see if those lines work
 			//will run through loop until done returns true
-			done = testLines();
+			done = test_file();
 		}
 
 	}
 //helper method to test lines
 	//set to public for testing
-	private boolean testLines()
+	private boolean test_file()
 	{
-	//we have 6 lines and 7 coords
-		//connectLines();
-
-		/*{
-			reader.intersect(lines[i]);
-		}*/
 		for(int i = 0; i < 5; i++)
 		{
 			//we need to compare each line to check every line in other shapes
 
 			//I think my boolean logic is screwy
-			if( reader.intersect(lines[i]) == false)
+			if( reader.compare_file(lines[i]) == false)
 			{
-				System.out.println("returned false on line " + i);
+				//System.out.println("returned false on line " + i);//for testing
 				return false;
 			}
 		}
 		return true;
 	}
+
 //helper method to make lineSegments from random points
 	private void connectLines()
 	{
-		//we need to stop at coord6--remember i + 1
-		for(int i = 0; i < 5 ;i++)
-		{//System.out.println("i is "+ i + " in connectLines");
-			//System.out.println("i is " + i);
-	lines[i] = new LineSegment(coords[i], coords[i+1]);
-			//System.out.println(lines[i]);
 
-}
-}
+		for(int i = 0; i < 5 ;i++)
+		{
+			lines[i] = new LineSegment(coords[i], coords[i+1]);
+		}
+	}
 
 
 }//end class

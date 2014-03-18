@@ -14,20 +14,20 @@ public class Shape
 		double num1, num2;
 		coords = new Coord[num];//allocate pointers for Coord array
 		num_lines = num_coords = num;
-		//here create 5 coords
-		for(int i = 0; i < num ; i++)
+
+		for(int i = 0; i < num ; i++) //read in each set of coords
 		{
 			num1 = file.nextDouble();
 			num2 = file.nextDouble();
 
 			coords[i] = new Coord(num1, num2);//for each
-			//System.out.println(coords[i]);
+
 		}
-		//here create 5 line segments
+
 
 		lines = new LineSegment[num];
-		//creates a linesegment for every 2 points
-		for(int i = 0; i < num; i++)
+		
+		for(int i = 0; i < num; i++)//creates a linesegment for every 2 points
 		{
 			if(i < num - 1)
 			{
@@ -41,15 +41,15 @@ public class Shape
 	public int get_num_lines(){return num_lines;}
 	public int get_num_coords(){return num_coords;}
 //should return true if intersects
-	public boolean compare(LineSegment line)
+	public boolean compare_shapes(LineSegment line)
 	{
 	//will compare this line with every lineSeg in this shape
 		for(int i = 0; i < lines.length; i++)
 		{
 			if( lines[i].intersect(line) == true)
 			{
-				System.out.println("this was line " + i + " in shapes obj");
-				return false;
+				//System.out.println("this was line " + i + " in shapes obj");//for testing
+				return false;//returns false if there is a conflict with path and shapes
 			}
 		}
 		return true;
