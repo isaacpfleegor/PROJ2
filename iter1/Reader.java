@@ -9,6 +9,28 @@ public class Reader
 	private int num_shapes;
 
 	//methods:
+
+	//for command line args
+	public Reader(Scanner file, int val) throws FileNotFoundException
+	{
+
+	num_shapes = file.nextInt(); //reads out num_shapes
+
+	shapes = new Shape[num_shapes];
+
+
+	for(int i = 0; i < num_shapes; i++)
+	{
+		int num_coords = file.nextInt(); //so, shape knows how many coords to read
+
+		shapes[i] = new Shape(file, num_coords); //creates new shape object for each element
+
+	}
+
+	file.close();
+
+}
+
 	public Reader(Scanner user) throws FileNotFoundException
 	{
 		System.out.println("Enter the name of the infile:");

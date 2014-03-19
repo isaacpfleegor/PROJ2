@@ -17,6 +17,27 @@ public class Solution
 	private Random gen = new Random();
 	private boolean done;
 
+//will use this constructor for command line args
+
+	public Solution(Scanner file, int val) throws FileNotFoundException
+	{
+		done = false;
+		start = new Coord(0, 0);
+		finish = new Coord(10, 10);
+		//read in the file that we will use as problem
+		reader = new Reader(file, 0);
+
+		//create the random set coords
+		//we can have shapes test for us and just keep the results
+		coords = new Coord[6];
+		coords[0] = start;
+		coords[5] = finish;
+
+		lines  = new LineSegment[6];
+
+
+	}
+
 	public Solution(Scanner user) throws FileNotFoundException
 	{
 		done = false;
