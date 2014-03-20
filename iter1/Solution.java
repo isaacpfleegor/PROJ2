@@ -19,10 +19,11 @@ public class Solution
 
 //constructor for command line args
 
-	public Solution(Scanner file, int p1, int p2) throws FileNotFoundException
+	public Solution(Scanner file, double p1, double p2, double p3, double p4 ) throws FileNotFoundException
 	{
-		start = new Coord(0, 0);
-		finish = new Coord(p1, p2);
+		//start = new Coord(0, 0);
+		start = new Coord(p1, p2);
+		finish = new Coord(p3, p4);
 		//read in the file that we will use as problem
 		reader = new Reader(file, 0);
 
@@ -41,21 +42,27 @@ public class Solution
 //constructor used if we would like to ask the user for a file
 	public Solution(Scanner user) throws FileNotFoundException
 	{
-		start = new Coord(0, 0);
 
-		//ask for the end point
+		//ask for points
 
-		System.out.println("Enter 2 integers for end coords");
-		System.out.println("Enter point 1: ");
-		int point1 = user.nextInt();
+		System.out.println("Enter 4 doubles for start and end coords" + "\n");
+		System.out.println("Enter point 1, double 1: ");
+		double point1 = user.nextDouble();
 
-		System.out.println("Enter point 2: ");
-		int point2 = user.nextInt();
+		System.out.println("Enter point 1, double 2: ");
+		double point2 = user.nextDouble();
+
+		System.out.println("Enter point 2, double 1: ");
+		double point3 = user.nextDouble();
+
+		System.out.println("Enter point 2, double 2: ");
+		double point4 = user.nextDouble();
 
 		//clear the buffer
 		user.nextLine();
 
-		finish = new Coord(point1, point2);
+		start = new Coord(point1, point2);
+		finish = new Coord(point3, point4);
 		//read in the file that we will use as problem
 		reader = new Reader(user);
 
@@ -87,7 +94,7 @@ public class Solution
 	public void getSolution()
 	{
 		boolean done = false;
-		
+
 		//we need to make sure that there is a min and max rand num
 		double minx = start.get_x();
 		double miny = start.get_y();
