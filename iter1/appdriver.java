@@ -1,18 +1,17 @@
 import java.util.*;
 import java.io.*;
 
-public class apptester
+public class appdriver
 {
 	public static void main(String[] args) throws FileNotFoundException
 	{
 		//for command line args
 		if (args.length > 0)
 		{
+			int pt1 = Integer.parseInt(args[2]);
+			int pt2 = Integer.parseInt(args[3]);
 			try
 			{
-				int pt1 = Integer.parseInt(args[2]);
-				int pt2 = Integer.parseInt(args[3]);
-
 				PrintWriter out = new PrintWriter( args[0]);//outfile
 				
 				Scanner file = new Scanner(new FileReader (args[1]));//file to read from
@@ -25,7 +24,9 @@ public class apptester
 			}
 			catch (Exception e)
 			{
-				System.out.println("Format should be java apptester filetowrite(string) filetoread(string) coord_end_point1(int) coord_end_point(int)");
+				System.err.println("Argument '" + args[0] +"' should be a file to write to");
+				System.err.println("Argument '" + args[1] +"' should be a file to read");
+				System.out.println("Format should be java apptester string string int int");
 			}
 		}
 		else

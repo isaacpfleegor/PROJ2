@@ -1,3 +1,0 @@
-Things to do:
-
--let the user pick the starting and ending points. ( if we do this, we have to make sure the user does'nt pick a point in a shape.  This would not allow us to ever get a correct solution.)

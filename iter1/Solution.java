@@ -40,55 +40,20 @@ public class Solution
 
 	}
 
-	/*public Solution(Scanner file, int val) throws FileNotFoundException
-	{
-		start = new Coord(0, 0);
-		finish = new Coord(10, 10);
-		//read in the file that we will use as problem
-		reader = new Reader(file, 0);
-		System.out.println("number of shapes is "+ reader.get_num_shapes());
-		//create the random set coords
-		//we can have shapes test for us and just keep the results
-		//we need to change the number of lines based on howmany shapes there are
-		coords = new Coord[6];
-		coords[0] = start;
-		coords[5] = finish;
-
-		lines  = new LineSegment[6];
-
-
-	}*/
-/*
-public Solution(Scanner user) throws FileNotFoundException
-	{
-		//we would have to know the number of shapes first, if we wanted to increase the number of lines per shape
-
-
-		start = new Coord(0, 0);
-		finish = new Coord(10, 10);
-		//read in the file that we will use as problem
-		reader = new Reader(user);
-
-		//create the random set coords
-		//we can have shapes test for us and just keep the results
-		coords = new Coord[6];
-		coords[0] = start;
-		coords[5] = finish;
-
-		lines  = new LineSegment[6];
-
-
-	}
-*/
 //constructor used if we would like to ask the user for a file
 	public Solution(Scanner user) throws FileNotFoundException
 	{
 		start = new Coord(0, 0);
+
+		//ask for the end point
+
 		System.out.println("Enter 2 integers for end coords");
 		System.out.println("Enter point 1: ");
 		int point1 = user.nextInt();
+
 		System.out.println("Enter point 2: ");
 		int point2 = user.nextInt();
+
 		//clear the buffer
 		user.nextLine();
 
