@@ -8,18 +8,16 @@ public class Solution
 	//array of holding line segs
 	private Coord[] coords;
 	private LineSegment[] lines; 
-	//do we need a boolean to tell us if line needs to be redone?
 
-	//we are going to create a path that is going to start from a certain set of coords and going to end at set of coords
-	private Coord start;
-	private Coord finish;
-	private Reader reader;
+
+	private Coord start; //start of path solution
+	private Coord finish;//end of path solution
+	private Reader reader; //will read the coords of problem from file
 	private int num_shapes, num_solns;
-	private Random gen = new Random();
+	private Random gen = new Random(); //for generating random path solutions
 
 
 //constructor for command line args
-
 
 	public Solution(Scanner file, int p1, int p2) throws FileNotFoundException
 	{
@@ -88,8 +86,8 @@ public class Solution
 
 	public void getSolution()
 	{
-		//done could be a local variable
 		boolean done = false;
+		
 		//we need to make sure that there is a min and max rand num
 		double minx = start.get_x();
 		double miny = start.get_y();
