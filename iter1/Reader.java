@@ -31,11 +31,11 @@ public class Reader
 
 }
 
-	public Reader(Scanner user) throws FileNotFoundException
-	{
-		System.out.println("Enter the name of the infile:");
-		String filename = user.nextLine();
-		file = new Scanner(new FileReader (filename));
+public Reader(Scanner user) throws FileNotFoundException
+{
+	System.out.println("Enter the name of the infile:");
+	String filename = user.nextLine();
+	file = new Scanner(new FileReader (filename));
 
 	num_shapes = file.nextInt(); //reads out num_shapes
 
@@ -80,4 +80,7 @@ public String toString()
 	}
 	return display;
 }
+
+public int get_num_shapes(){return num_shapes;}
+
 }

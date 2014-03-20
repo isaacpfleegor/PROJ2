@@ -14,21 +14,42 @@ public class Solution
 	private Coord start;
 	private Coord finish;
 	private Reader reader;
+	private int num_shapes, num_solns;
 	private Random gen = new Random();
-	private boolean done;
 
-//will use this constructor for command line args
 
-	public Solution(Scanner file, int val) throws FileNotFoundException
+//constructor for command line args
+
+
+	public Solution(Scanner file, int p1, int p2) throws FileNotFoundException
 	{
-		done = false;
+		start = new Coord(0, 0);
+		finish = new Coord(p1, p2);
+		//read in the file that we will use as problem
+		reader = new Reader(file, 0);
+
+		num_shapes = reader.get_num_shapes();
+		num_solns = num_shapes + 1; //solutions should have at least one more line than shape
+
+		coords = new Coord[num_solns]; 
+		coords[0] = start;
+		coords[num_solns - 1] = finish; //-1 because array index begins at 0
+
+		lines  = new LineSegment[num_solns];
+
+
+	}
+
+	/*public Solution(Scanner file, int val) throws FileNotFoundException
+	{
 		start = new Coord(0, 0);
 		finish = new Coord(10, 10);
 		//read in the file that we will use as problem
 		reader = new Reader(file, 0);
-
+		System.out.println("number of shapes is "+ reader.get_num_shapes());
 		//create the random set coords
 		//we can have shapes test for us and just keep the results
+		//we need to change the number of lines based on howmany shapes there are
 		coords = new Coord[6];
 		coords[0] = start;
 		coords[5] = finish;
@@ -36,11 +57,13 @@ public class Solution
 		lines  = new LineSegment[6];
 
 
-	}
-
-	public Solution(Scanner user) throws FileNotFoundException
+	}*/
+/*
+public Solution(Scanner user) throws FileNotFoundException
 	{
-		done = false;
+		//we would have to know the number of shapes first, if we wanted to increase the number of lines per shape
+
+
 		start = new Coord(0, 0);
 		finish = new Coord(10, 10);
 		//read in the file that we will use as problem
@@ -56,11 +79,40 @@ public class Solution
 
 
 	}
+*/
+//constructor used if we would like to ask the user for a file
+	public Solution(Scanner user) throws FileNotFoundException
+	{
+		start = new Coord(0, 0);
+		System.out.println("Enter 2 integers for end coords");
+		System.out.println("Enter point 1: ");
+		int point1 = user.nextInt();
+		System.out.println("Enter point 2: ");
+		int point2 = user.nextInt();
+		//clear the buffer
+		user.nextLine();
+
+		finish = new Coord(point1, point2);
+		//read in the file that we will use as problem
+		reader = new Reader(user);
+
+		num_shapes = reader.get_num_shapes();
+
+		num_solns = num_shapes + 1; //solutions should have at least one more line than shape
+
+		coords = new Coord[num_solns];
+		coords[0] = start;
+		coords[num_solns - 1] = finish; //-1 because array index begins at 0
+
+		lines  = new LineSegment[num_solns];
+
+
+	}
 	//prints out solution coordinate array in the proper answer format
 	public String toString()
 	{
 		String display = "";
-		display += 6 + "\n";
+		display += num_solns + "\n";
 		for(int i = 0; i < coords.length; i++)
 		{
 			display += coords[i].toString() + "\n";
@@ -72,7 +124,7 @@ public class Solution
 	public void getSolution()
 	{
 		//done could be a local variable
-		
+		boolean done = false;
 		//we need to make sure that there is a min and max rand num
 		double minx = start.get_x();
 		double miny = start.get_y();
@@ -81,14 +133,15 @@ public class Solution
 
 		while(!done)
 		{
+			//create random solutions
 			//coordinates between start and finish
-			for(int i = 1; i < 5; i++)
+			for(int i = 1; i < num_solns - 1; i++)
 			{
 				double numx = Math.abs((gen.nextDouble() * 100) %(maxx - minx) + minx);
 				double numy = Math.abs((gen.nextDouble() * 100) %(maxy - miny) + miny);
 
 				coords[i] = new Coord(numx, numy);
-				//System.out.println(coords[i].toString());
+				//System.out.println(coords[i].toString()); //for testing
 			}
 			//makes lines from random coords
 			connectLines();
@@ -102,7 +155,7 @@ public class Solution
 	//set to public for testing
 	private boolean test_file()
 	{
-		for(int i = 0; i < 5; i++)
+		for(int i = 0; i < num_solns - 1; i++)
 		{
 			//we need to compare each line to check every line in other shapes
 
@@ -120,7 +173,7 @@ public class Solution
 	private void connectLines()
 	{
 
-		for(int i = 0; i < 5 ;i++)
+		for(int i = 0; i < num_solns - 1 ;i++)
 		{
 			lines[i] = new LineSegment(coords[i], coords[i+1]);
 		}
